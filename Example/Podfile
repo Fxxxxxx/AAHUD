@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AAHUD_Example' do
+  pod 'AAHUD', :path => '../'
+
+  target 'AAHUD_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

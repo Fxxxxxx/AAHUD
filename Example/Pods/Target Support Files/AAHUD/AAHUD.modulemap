@@ -1,0 +1,6 @@
+framework module AAHUD {
+  umbrella header "AAHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

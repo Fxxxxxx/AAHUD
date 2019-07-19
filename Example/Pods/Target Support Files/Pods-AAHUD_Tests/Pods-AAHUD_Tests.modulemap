@@ -1,0 +1,6 @@
+framework module Pods_AAHUD_Tests {
+  umbrella header "Pods-AAHUD_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
