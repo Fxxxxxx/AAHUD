@@ -104,7 +104,7 @@ extension HUD {
     static let bundle = getResourceBundle()
     static func getResourceBundle() -> Bundle? {
         let bundle = Bundle.init(for: HUD.self)
-        let path = bundle.path(forResource: "HUD", ofType: "bundle")
+        let path = bundle.path(forResource: "Resource", ofType: "bundle")
         return Bundle.init(path: path ?? "")
     }
 }
