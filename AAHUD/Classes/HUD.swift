@@ -123,7 +123,7 @@ extension HUD {
             NotificationCenter.default.addObserver(self, selector: #selector(windowChange(sender:)), name: UIWindow.didBecomeHiddenNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(windowChange(sender:)), name: UIWindow.didBecomeKeyNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(windowChange(sender:)), name: UIWindow.didResignKeyNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(hiddenKeyboard), name: UIResponder.keyboardDidShowNotification , object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(hiddenKeyboard), name: UIResponder.keyboardDidHideNotification , object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification , object: nil)
             window = frontWindow()
             

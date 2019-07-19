@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AAHUD'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'MBProgressHUD 简单好用的封装'
   s.swift_version    = '5'
 
