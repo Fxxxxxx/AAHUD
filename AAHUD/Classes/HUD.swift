@@ -16,7 +16,7 @@ public class HUD: NSObject {
     @discardableResult
     public class func showLoading(message: String?, view: UIView? = nil, mode: MBProgressHUDMode = .indeterminate, mask: Bool = false) -> MBProgressHUD {
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.init()
+        let hud = MBProgressHUD.init(view: showView)
         showView.bringSubviewToFront(hud)
         hud.removeFromSuperViewOnHide = true
         hud.mode = mode
@@ -59,7 +59,7 @@ public class HUD: NSObject {
     
     public class func show(message: String, icon: UIImage? = nil, view: UIView? = nil) {
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.init()
+        let hud = MBProgressHUD.init(view: showView)
         showView.bringSubviewToFront(hud)
         if icon != nil {
             hud.mode = .customView
