@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AAHUD
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,10 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    @IBAction func show(_ sender: Any) {
+        HUD.showSuccess("show the hud")
+//        HUD.showLoading(message: "load......")
+    }
+    
 }
 

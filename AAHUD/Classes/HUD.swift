@@ -16,7 +16,7 @@ public class HUD: NSObject {
     @discardableResult
     public class func showLoading(message: String?, view: UIView? = nil, mode: MBProgressHUDMode = .indeterminate, mask: Bool = false) -> MBProgressHUD {
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.init(view: showView)
+        let hud = MBProgressHUD.init()
         showView.bringSubviewToFront(hud)
         hud.removeFromSuperViewOnHide = true
         hud.mode = mode
@@ -35,6 +35,7 @@ public class HUD: NSObject {
             hud.backgroundColor = UIColor.init(white: 0, alpha: 0.3)
         }
         DispatchQueue.main.async {
+            showView.addSubview(hud)
             hud.show(animated: true)
         }
         return hud
@@ -58,7 +59,7 @@ public class HUD: NSObject {
     
     public class func show(message: String, icon: UIImage? = nil, view: UIView? = nil) {
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.init(view: showView)
+        let hud = MBProgressHUD.init()
         showView.bringSubviewToFront(hud)
         if icon != nil {
             hud.mode = .customView
@@ -79,6 +80,7 @@ public class HUD: NSObject {
         hud.label.numberOfLines = 0
         hud.label.text = message
         DispatchQueue.main.async {
+            showView.addSubview(hud)
             hud.show(animated: true)
             hud.hide(animated: true, afterDelay: 1.0)
         }
