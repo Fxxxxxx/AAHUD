@@ -1,5 +1,7 @@
 use_frameworks!
 
+source 'https://cdn.cocoapods.org/'
+
 target 'AAHUD_Example' do
   pod 'AAHUD', :path => '../'
 

@@ -20,11 +20,7 @@
     "ios": "8.0"
   },
   "source_files": "AAHUD/Classes/**/*",
-  "resource_bundles": {
-    "Resource": [
-      "AAHUD/Assets/*.png"
-    ]
-  },
+  "resources": "AAHUD/Assets/*",
   "frameworks": "UIKit",
   "dependencies": {
     "MBProgressHUD": [

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AAHUD'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'MBProgressHUD 简单好用的封装'
   s.swift_version    = '5'
 
@@ -33,9 +33,7 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'AAHUD/Classes/**/*'
   
-  s.resource_bundles = {
-    'Resource' => ['AAHUD/Assets/*.png']
-  }
+  s.resources = 'AAHUD/Assets/*'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'

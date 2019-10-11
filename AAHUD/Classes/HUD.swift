@@ -15,9 +15,8 @@ public class HUD: NSObject {
     
     @discardableResult
     public class func showLoading(message: String?, view: UIView? = nil, mode: MBProgressHUDMode = .indeterminate, mask: Bool = false) -> MBProgressHUD {
-        
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.showAdded(to: showView, animated: true)
+        let hud = MBProgressHUD.init(view: showView)
         showView.bringSubviewToFront(hud)
         hud.removeFromSuperViewOnHide = true
         hud.mode = mode
@@ -35,9 +34,10 @@ public class HUD: NSObject {
         if mask {
             hud.backgroundColor = UIColor.init(white: 0, alpha: 0.3)
         }
-        
+        DispatchQueue.main.async {
+            hud.show(animated: true)
+        }
         return hud
-        
     }
     
     public class func hide(_ hud: MBProgressHUD) {
@@ -57,9 +57,8 @@ public class HUD: NSObject {
     }
     
     public class func show(message: String, icon: UIImage? = nil, view: UIView? = nil) {
-        
         let showView = view ?? windowManager.window!
-        let hud = MBProgressHUD.showAdded(to: showView, animated: true)
+        let hud = MBProgressHUD.init(view: showView)
         showView.bringSubviewToFront(hud)
         if icon != nil {
             hud.mode = .customView
@@ -79,8 +78,10 @@ public class HUD: NSObject {
         hud.label.textColor = UIColor.white
         hud.label.numberOfLines = 0
         hud.label.text = message
-        hud.hide(animated: true, afterDelay: 1.0)
-        
+        DispatchQueue.main.async {
+            hud.show(animated: true)
+            hud.hide(animated: true, afterDelay: 1.0)
+        }
     }
     
     public class func showSuccess(_ success: String, view: UIView? = nil) {
@@ -101,12 +102,7 @@ public class HUD: NSObject {
 }
 
 extension HUD {
-    static let bundle = getResourceBundle()
-    static func getResourceBundle() -> Bundle? {
-        let bundle = Bundle.init(for: HUD.self)
-        let path = bundle.path(forResource: "Resource", ofType: "bundle")
-        return Bundle.init(path: path ?? "")
-    }
+    static let bundle = Bundle.init(for: classForCoder())
 }
 
 extension HUD {
@@ -117,7 +113,6 @@ extension HUD {
         var isKeyboardShowing = false
         
         override init() {
-            
             super.init()
             NotificationCenter.default.addObserver(self, selector: #selector(windowChange(sender:)), name: UIWindow.didBecomeVisibleNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(windowChange(sender:)), name: UIWindow.didBecomeHiddenNotification, object: nil)
@@ -126,7 +121,6 @@ extension HUD {
             NotificationCenter.default.addObserver(self, selector: #selector(hiddenKeyboard), name: UIResponder.keyboardDidHideNotification , object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification , object: nil)
             window = frontWindow()
-            
         }
         
         deinit {
@@ -146,9 +140,7 @@ extension HUD {
         }
         
         private func frontWindow() -> UIWindow? {
-            
             for window in UIApplication.shared.windows.reversed() {
-                
                 guard window.screen == UIScreen.main else {
                     continue
                 }
@@ -162,12 +154,8 @@ extension HUD {
                     continue
                 }
                 return window
-                
             }
             return nil
-            
         }
-        
     }
-    
 }
